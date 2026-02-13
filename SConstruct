@@ -10,7 +10,7 @@ import common
 import voxel_version
 
 LIB_NAME = "libvoxel"
-BIN_FOLDER = "project/addons/zylann.voxel/bin"
+BIN_FOLDER = "../../../addons/zylann.voxel/bin"
 
 
 def is_using_clang(env):
@@ -64,7 +64,7 @@ voxel_version.generate_version_header(False)
 # TODO Enhancement: not sure how to provide this as a SCons option since we get our environment *by running GodotCpp*...
 #env_vars.Add(PathVariable("godot_cpp_path", "Path to the GodotCpp library source code", None, PathVariable.PathIsDir))
 # TODO GDX: Have GodotCpp in thirdparty/ eventually
-godot_cpp_path = os.environ.get("GODOT_CPP_PATH", "D:/PROJETS/INFO/GODOT/Engine/godot_cpp_fork")
+godot_cpp_path = os.environ.get("GODOT_CPP_PATH", "../godot-cpp")
 
 # Dependency on GodotCpp.
 # Use the same cross-platform configurations.

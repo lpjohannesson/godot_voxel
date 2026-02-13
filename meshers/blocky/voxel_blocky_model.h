@@ -30,7 +30,7 @@ public:
 	// Don't assign a non-empty model at this index.
 	static const uint16_t AIR_ID = 0;
 	static const uint8_t NULL_FLUID_INDEX = 255;
-	static constexpr uint32_t MAX_SURFACES = 2;
+	static constexpr uint32_t MAX_SURFACES = 4;
 
 	VoxelBlockyModel();
 
