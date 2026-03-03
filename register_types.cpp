@@ -188,6 +188,8 @@
 #include "util/testing/test_options.h"
 #endif
 
+#include "custom/voxel_blocky_model_fence.h"
+
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 // This is used to have an idea of the memory footprint of various objects as Godot and Voxel development progresses.
@@ -257,6 +259,8 @@ void initialize_voxel_module(ModuleInitializationLevel p_level) {
 		// Should be abstract, but isn't for compatibility with old versions that didn't have separate VoxelBlockyModel
 		// classes
 		ClassDB::register_class<VoxelBlockyModel>();
+
+		ClassDB::register_class<VoxelBlockyModelFence>();
 
 		ClassDB::register_class<VoxelBlockyModelCube>();
 		ClassDB::register_class<VoxelBlockyModelMesh>();

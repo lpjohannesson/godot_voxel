@@ -104,6 +104,8 @@ if env["voxel_sqlite"]:
         "thirdparty/sqlite/sqlite3.c"
     ]
 
+sources += Glob("custom/*.cpp")
+
 sources += [
 	"util/thread/godot_thread_helper.cpp",
 ]
