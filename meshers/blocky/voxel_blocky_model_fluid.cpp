@@ -9,6 +9,10 @@
 #include "blocky_model_baking_context.h"
 #include "voxel_blocky_library_base.h"
 
+#ifdef ZN_GODOT
+#include "../../util/godot/core/class_db.h"
+#endif
+
 namespace zylann::voxel {
 
 VoxelBlockyModelFluid::VoxelBlockyModelFluid() {}
@@ -148,6 +152,8 @@ void bake_fluid_model(
 
 	baked_model.model.surface_count = 1;
 	baked_model.model.surfaces[0].material_id = materials.get_or_create_index(fluid->get_material());
+	// Fluids have no mesh collision because mesh colliders are meant for solid stuff
+	baked_model.model.surfaces[0].collision_enabled = false; // fluid_model.is_mesh_collision_enabled(0);
 }
 
 } // namespace blocky

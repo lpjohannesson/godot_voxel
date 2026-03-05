@@ -3,6 +3,10 @@
 #include "../../util/godot/classes/curve.h"
 #include "../../util/godot/classes/fast_noise_lite.h"
 
+#ifdef ZN_GODOT
+#include "../../util/godot/core/class_db.h"
+#endif
+
 namespace zylann::voxel {
 
 VoxelGeneratorNoise2D::VoxelGeneratorNoise2D() {}

@@ -364,7 +364,8 @@ void VoxelLodTerrain::_on_gi_mode_changed() {
 }
 
 void VoxelLodTerrain::_on_shadow_casting_changed() {
-	const RenderingServer::ShadowCastingSetting mode = RenderingServer::ShadowCastingSetting(get_shadow_casting());
+	const RenderingServerEnums::ShadowCastingSetting mode =
+			RenderingServerEnums::ShadowCastingSetting(get_shadow_casting());
 	for (unsigned int lod_index = 0; lod_index < _update_data->state.lods.size(); ++lod_index) {
 		_mesh_maps_per_lod[lod_index].for_each_block([mode](VoxelMeshBlockVLT &block) { //
 			block.set_shadow_casting(mode);
@@ -2058,15 +2059,15 @@ void VoxelLodTerrain::apply_mesh_update(VoxelEngine::BlockMeshOutput &ob) {
 		}
 
 #ifdef TOOLS_ENABLED
-		const RenderingServer::ShadowCastingSetting shadow_occluder_mode = _debug_draw_shadow_occluders
-				? RenderingServer::SHADOW_CASTING_SETTING_ON
-				: RenderingServer::SHADOW_CASTING_SETTING_SHADOWS_ONLY;
+		const RenderingServerEnums::ShadowCastingSetting shadow_occluder_mode = _debug_draw_shadow_occluders
+				? RenderingServerEnums::SHADOW_CASTING_SETTING_ON
+				: RenderingServerEnums::SHADOW_CASTING_SETTING_SHADOWS_ONLY;
 #endif
 
 		block->set_mesh(
 				mesh,
 				get_gi_mode(),
-				RenderingServer::ShadowCastingSetting(get_shadow_casting()),
+				RenderingServerEnums::ShadowCastingSetting(get_shadow_casting()),
 				get_render_layers_mask(),
 				shadow_occluder_mesh,
 				ob.surfaces.collision_surface.submesh_vertex_end,
@@ -2106,7 +2107,7 @@ void VoxelLodTerrain::apply_mesh_update(VoxelEngine::BlockMeshOutput &ob) {
 					transition_mesh,
 					dir,
 					get_gi_mode(),
-					RenderingServer::ShadowCastingSetting(get_shadow_casting()),
+					RenderingServerEnums::ShadowCastingSetting(get_shadow_casting()),
 					get_render_layers_mask()
 			);
 		}
@@ -3357,8 +3358,9 @@ void VoxelLodTerrain::debug_set_draw_shadow_occluders(bool enable) {
 		return;
 	}
 	_debug_draw_shadow_occluders = enable;
-	const RenderingServer::ShadowCastingSetting mode =
-			enable ? RenderingServer::SHADOW_CASTING_SETTING_ON : RenderingServer::SHADOW_CASTING_SETTING_SHADOWS_ONLY;
+	const RenderingServerEnums::ShadowCastingSetting mode = enable
+			? RenderingServerEnums::SHADOW_CASTING_SETTING_ON
+			: RenderingServerEnums::SHADOW_CASTING_SETTING_SHADOWS_ONLY;
 	for (VoxelMeshMap<VoxelMeshBlockVLT> &mesh_map : _mesh_maps_per_lod) {
 		mesh_map.for_each_block([mode](VoxelMeshBlockVLT &block) { //
 			block.set_shadow_occluder_mode(mode);

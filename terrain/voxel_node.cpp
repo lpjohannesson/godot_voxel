@@ -10,6 +10,10 @@
 #include "../util/godot/classes/script.h"
 #include "../util/godot/core/string.h"
 
+#ifdef ZN_GODOT
+#include "../util/godot/core/class_db.h"
+#endif
+
 #ifdef VOXEL_ENABLE_SMOOTH_MESHING
 #include "../meshers/transvoxel/voxel_mesher_transvoxel.h"
 #endif

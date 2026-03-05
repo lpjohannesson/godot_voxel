@@ -12,6 +12,10 @@
 #include "blocky_model_baking_context.h"
 #include "voxel_blocky_library.h"
 
+#ifdef ZN_GODOT
+#include "../../util/godot/core/class_db.h"
+#endif
+
 // TODO Only required because of MAX_MATERIALS... could be enough inverting that dependency
 #include "voxel_mesher_blocky.h"
 

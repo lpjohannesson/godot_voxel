@@ -9,6 +9,10 @@
 #include "../util/string/format.h"
 #include "metadata/voxel_metadata_variant.h"
 
+#ifdef ZN_GODOT
+#include "../util/godot/core/class_db.h"
+#endif
+
 namespace zylann::voxel {
 
 template <typename F>

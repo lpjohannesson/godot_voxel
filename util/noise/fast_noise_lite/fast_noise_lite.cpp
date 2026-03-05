@@ -2,6 +2,10 @@
 #include "../../godot/core/array.h"
 #include "../../math/funcs.h"
 
+#ifdef ZN_GODOT
+#include "../../godot/core/class_db.h"
+#endif
+
 namespace zylann {
 
 ZN_FastNoiseLite::ZN_FastNoiseLite() {

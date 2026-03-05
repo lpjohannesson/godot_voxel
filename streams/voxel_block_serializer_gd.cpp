@@ -3,6 +3,10 @@
 #include "../util/godot/core/packed_arrays.h"
 #include "voxel_block_serializer.h"
 
+#ifdef ZN_GODOT
+#include "../util/godot/core/class_db.h"
+#endif
+
 using namespace zylann::godot;
 
 namespace zylann::voxel::godot {

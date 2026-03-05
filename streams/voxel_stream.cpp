@@ -3,6 +3,10 @@
 #include "../util/godot/core/string.h"
 #include "../util/string/format.h"
 
+#ifdef ZN_GODOT
+#include "../util/godot/core/class_db.h"
+#endif
+
 namespace zylann::voxel {
 
 VoxelStream::VoxelStream() {}

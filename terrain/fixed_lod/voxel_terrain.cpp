@@ -299,7 +299,8 @@ void VoxelTerrain::_on_gi_mode_changed() {
 }
 
 void VoxelTerrain::_on_shadow_casting_changed() {
-	const RenderingServer::ShadowCastingSetting mode = RenderingServer::ShadowCastingSetting(get_shadow_casting());
+	const RenderingServerEnums::ShadowCastingSetting mode =
+			RenderingServerEnums::ShadowCastingSetting(get_shadow_casting());
 	_mesh_map.for_each_block([mode](VoxelMeshBlockVT &block) { //
 		block.set_shadow_casting(mode);
 	});
@@ -2070,15 +2071,15 @@ void VoxelTerrain::apply_mesh_update(const VoxelEngine::BlockMeshOutput &ob) {
 	}
 
 #ifdef TOOLS_ENABLED
-	const RenderingServer::ShadowCastingSetting shadow_occluder_mode = _debug_draw_shadow_occluders
-			? RenderingServer::SHADOW_CASTING_SETTING_ON
-			: RenderingServer::SHADOW_CASTING_SETTING_SHADOWS_ONLY;
+	const RenderingServerEnums::ShadowCastingSetting shadow_occluder_mode = _debug_draw_shadow_occluders
+			? RenderingServerEnums::SHADOW_CASTING_SETTING_ON
+			: RenderingServerEnums::SHADOW_CASTING_SETTING_SHADOWS_ONLY;
 #endif
 
 	block->set_mesh(
 			mesh,
 			get_gi_mode(),
-			static_cast<RenderingServer::ShadowCastingSetting>(get_shadow_casting()),
+			static_cast<RenderingServerEnums::ShadowCastingSetting>(get_shadow_casting()),
 			get_render_layers_mask(),
 			shadow_occluder_mesh
 #ifdef TOOLS_ENABLED
@@ -2286,8 +2287,9 @@ void VoxelTerrain::debug_set_draw_shadow_occluders(bool enable) {
 		return;
 	}
 	_debug_draw_shadow_occluders = enable;
-	const RenderingServer::ShadowCastingSetting mode =
-			enable ? RenderingServer::SHADOW_CASTING_SETTING_ON : RenderingServer::SHADOW_CASTING_SETTING_SHADOWS_ONLY;
+	const RenderingServerEnums::ShadowCastingSetting mode = enable
+			? RenderingServerEnums::SHADOW_CASTING_SETTING_ON
+			: RenderingServerEnums::SHADOW_CASTING_SETTING_SHADOWS_ONLY;
 	_mesh_map.for_each_block([mode](VoxelMeshBlockVT &block) {
 		if (block.shadow_occluder.is_valid()) {
 			block.shadow_occluder.set_cast_shadows_setting(mode);
